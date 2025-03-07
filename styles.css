@@ -19,6 +19,7 @@ header {
 main {
   padding: 20px;
   height: calc(100% - 20px);
+  width: calc(100vw - 40px);
 }
 
 p {
@@ -26,9 +27,8 @@ p {
 }
 
 section {
-  max-width: 800px;
-  width: 33%;
-  min-width: 300px;
+  max-width: 500px;
+  min-width: 236px;
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -38,6 +38,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
 .avatar {
@@ -51,9 +52,9 @@ footer {
   background-color: #333;
   color: white;
   padding: 10px;
-  bottom: 0;
-  width: 100%;
+  width: calc(100% - 20px);
   text-align: center;
+  font-size: 14px;
 }
 
 h1 {
@@ -87,7 +88,8 @@ a {
 }
 
 .lang-edu-sections section {
-  width: auto;
+  flex-grow: 1;
+  justify-content: flex-start;
 }
 
 .about-sections-container {
@@ -98,16 +100,19 @@ a {
 
 .time {
   color: #7e7e7e;
+  font-size: 14px;
 }
 
 .projects {
   display: flex;
   width: auto;
   gap: 20px;
-  padding-top: 20px;
-  overflow-x: scroll;
+  padding: 20px 0;
+  overflow-x: auto;
   scrollbar-color: #333 #ffffff00;
   scrollbar-width: thin;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -119,7 +124,7 @@ a {
 }
 
 .project img {
-  min-width: 300px;
+  min-width: 280px;
   height: 300px;
   width: 30vw;
   object-fit: cover;
@@ -136,4 +141,76 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  scroll-snap-align: center;
+}
+
+@media only screen and (max-width: 1440px) {
+  .about-sections-container {
+    flex-wrap: wrap;
+  }
+
+  section {
+    max-width: unset;
+  }
+
+  .about-sections-container section:nth-child(1) {
+    order: 1;
+  }
+
+  .about-sections-container .lang-edu-sections {
+    order: 4;
+  }
+
+  .about-sections-container section:nth-child(3) {
+    order: 2;
+  }
+
+  .about-sections-container section:nth-child(4) {
+    order: 3;
+  }
+
+  .project img {
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 1138px) {
+  .lang-edu-sections {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    height: calc(100vh - 40px);
+  }
+
+  header div {
+    text-align: center;
+  }
+
+  header h1 {
+    width: 100%;
+  }
+
+  header p {
+    margin: 0;
+  }
+
+  .contacts {
+    text-align: unset;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
 }
